@@ -6,7 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 const specialGothic = Special_Gothic({
     variable: "--font-special-gothic",
     subsets: ["latin"],
-    adjustFontFallback: false,
+    fallback: ["Special Gothic", "special-gothic"],
 });
 
 export const metadata: Metadata = {
@@ -20,11 +20,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning className={specialGothic.className}>
             <ClerkProvider>
-                <body className={`${specialGothic.variable}  antialiased  bg-ink-50`}>
-                    {children}
-                </body>
+                <body className="antialiased bg-ink-50">{children}</body>
             </ClerkProvider>
         </html>
     );
