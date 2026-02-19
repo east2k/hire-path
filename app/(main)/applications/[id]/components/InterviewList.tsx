@@ -73,6 +73,7 @@ const InterviewList = ({ interviews, applicationId }: InterviewListProps) => {
                         <StandardSelect
                             label="Interview Type"
                             name="type"
+                            required
                             selectOptions={INTERVIEW_TYPES.map((s) => ({
                                 value: s.value,
                                 label: s.label,

@@ -9,6 +9,7 @@ type StandardSelectProps = {
     id?: string;
     label?: string;
     name?: string;
+    required?: boolean;
     selectOptions: SelectOption[];
     defaultValue?: string;
     onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -18,6 +19,7 @@ const StandardSelect = ({
     id,
     label,
     name,
+    required,
     selectOptions,
     defaultValue,
     onChange,
@@ -26,13 +28,14 @@ const StandardSelect = ({
         <div className="flex flex-col gap-1.5">
             {label && (
                 <label htmlFor={id} className="text-sm font-medium text-ink-700">
-                    {label}
+                    {label}{required && <span className="text-red-500 ml-0.5">*</span>}
                 </label>
             )}
             <div className="relative">
                 <select
                     id={id}
                     name={name}
+                    required={required}
                     defaultValue={defaultValue}
                     onChange={onChange}
                     className="w-full appearance-none cursor-pointer rounded-lg border border-ink-200 bg-white px-3 pr-8 py-2 text-sm focus:border-blue-ribbon-500 focus:outline-none focus:ring-2 focus:ring-blue-ribbon-500/20"
