@@ -15,7 +15,6 @@ type DashboardContentsProps = {
 };
 
 const DashboardContents = ({ upcomingInterviews, pendingFollowUps }: DashboardContentsProps) => {
-    console.log(upcomingInterviews);
     return (
         <>
             <div className="grid gap-6 lg:grid-cols-2">
