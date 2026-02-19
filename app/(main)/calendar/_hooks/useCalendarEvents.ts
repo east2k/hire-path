@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { EventInput } from "@fullcalendar/core";
 import type { getCalendarEvents } from "@/db/queries/applications";
-import { CalendarEventMeta } from "../_components/CalendarEventPopup";
+import { CalendarEventMeta } from "../_types";
 
 type UseCalendarEventsInput = {
     interviews: Awaited<ReturnType<typeof getCalendarEvents>>["interviews"];

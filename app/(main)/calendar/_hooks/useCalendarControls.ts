@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import { DatesSetArg, EventClickArg } from "@fullcalendar/core";
-import { CalendarEventMeta } from "../_components/CalendarEventPopup";
+import { CalendarEventMeta } from "../_types";
 
 export function useCalendarControls() {
     const calendarRef = useRef<FullCalendar>(null);
