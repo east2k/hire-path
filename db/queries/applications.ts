@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { applications, interviewStages, followUps } from "@/db/schema";
-import { and, eq, isNull, gte, count, SQL } from "drizzle-orm";
+import { and, eq, isNull, isNotNull, gte, count, SQL } from "drizzle-orm";
 
 export async function getUserApplications(clerkUserId: string, status?: string) {
     const conditions: SQL<unknown>[] = [
@@ -137,4 +137,70 @@ export async function getPendingFollowUps(clerkUserId: string) {
         )
         .orderBy(followUps.dueDate)
         .limit(5);
+}
+
+export async function getCalendarEvents(clerkUserId: string) {
+    const [interviews, followUpEvents, applicationEvents] = await Promise.all([
+        db
+            .select({
+                id: interviewStages.id,
+                title: interviewStages.title,
+                scheduledAt: interviewStages.scheduledAt,
+                duration: interviewStages.duration,
+                location: interviewStages.location,
+                type: interviewStages.type,
+                status: interviewStages.status,
+                applicationId: interviewStages.applicationId,
+                company: applications.company,
+                position: applications.position,
+            })
+            .from(interviewStages)
+            .innerJoin(applications, eq(interviewStages.applicationId, applications.id))
+            .where(
+                and(
+                    eq(applications.clerkUserId, clerkUserId),
+                    isNull(interviewStages.deletedAt),
+                    isNull(applications.deletedAt),
+                    isNotNull(interviewStages.scheduledAt),
+                ),
+            ),
+        db
+            .select({
+                id: followUps.id,
+                title: followUps.title,
+                dueDate: followUps.dueDate,
+                status: followUps.status,
+                notes: followUps.notes,
+                applicationId: followUps.applicationId,
+                company: applications.company,
+                position: applications.position,
+            })
+            .from(followUps)
+            .innerJoin(applications, eq(followUps.applicationId, applications.id))
+            .where(
+                and(
+                    eq(applications.clerkUserId, clerkUserId),
+                    isNull(followUps.deletedAt),
+                    isNull(applications.deletedAt),
+                ),
+            ),
+        db
+            .select({
+                id: applications.id,
+                company: applications.company,
+                position: applications.position,
+                status: applications.status,
+                appliedDate: applications.appliedDate,
+            })
+            .from(applications)
+            .where(
+                and(
+                    eq(applications.clerkUserId, clerkUserId),
+                    isNull(applications.deletedAt),
+                    isNotNull(applications.appliedDate),
+                ),
+            ),
+    ]);
+
+    return { interviews, followUpEvents, applicationEvents };
 }

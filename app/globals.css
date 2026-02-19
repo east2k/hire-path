@@ -25,3 +25,127 @@
     --color-ink-900: #343a46;
     --color-ink-950: #23272e;
 }
+
+/* FullCalendar theme overrides */
+.fc-hire-path .fc-col-header-cell-cushion {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #8695aa; /* ink-400 */
+    text-decoration: none;
+}
+
+.fc-hire-path .fc-daygrid-day-number {
+    font-size: 0.8rem;
+    color: #434e61; /* ink-700 */
+    text-decoration: none;
+}
+
+.fc-hire-path .fc-day-other .fc-daygrid-day-number {
+    color: #b1bbc8; /* ink-300 */
+}
+
+.fc-hire-path .fc-day-today {
+    background-color: #eff4ff !important; /* blue-ribbon-50 */
+}
+
+.fc-hire-path .fc-day-today .fc-daygrid-day-number {
+    background-color: #6090fa; /* blue-ribbon-400 */
+    color: #ffffff;
+    border-radius: 9999px;
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.fc-hire-path .fc-button-primary {
+    background-color: #6090fa; /* blue-ribbon-400 */
+    border-color: #6090fa;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    padding: 0.35rem 0.75rem;
+    transition: opacity 0.2s;
+}
+
+.fc-hire-path .fc-button-primary:hover {
+    background-color: #3b76f6; /* blue-ribbon-500 */
+    border-color: #3b76f6;
+    opacity: 0.9;
+}
+
+.fc-hire-path .fc-button-primary:not(:disabled):active,
+.fc-hire-path .fc-button-primary.fc-button-active {
+    background-color: #2563eb; /* blue-ribbon-600 */
+    border-color: #2563eb;
+}
+
+.fc-hire-path .fc-button-primary:disabled {
+    background-color: #93b4fd; /* blue-ribbon-300 */
+    border-color: #93b4fd;
+}
+
+.fc-hire-path .fc-event {
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-width: 0 0 0 3px;
+    cursor: pointer;
+}
+
+.fc-hire-path .fc-daygrid-more-link {
+    font-size: 0.7rem;
+    color: #8695aa; /* ink-400 */
+}
+
+.fc-hire-path .fc-scrollgrid {
+    border-color: #eceef2; /* ink-100 */
+}
+
+.fc-hire-path th,
+.fc-hire-path td {
+    border-color: #eceef2 !important; /* ink-100 */
+}
+
+/* List view */
+.fc-hire-path .fc-list-day-cushion {
+    background-color: #f6f7f9; /* ink-50 */
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #343a46; /* ink-900 */
+    padding: 0.4rem 1rem;
+}
+
+.fc-hire-path .fc-list-event:hover td {
+    background-color: #f6f7f9; /* ink-50 */
+    cursor: pointer;
+}
+
+.fc-hire-path .fc-list-event-dot {
+    border-radius: 9999px;
+    width: 0.6rem;
+    height: 0.6rem;
+}
+
+.fc-hire-path .fc-list-event-time {
+    font-size: 0.75rem;
+    color: #8695aa; /* ink-400 */
+    white-space: nowrap;
+}
+
+.fc-hire-path .fc-list-event-title a {
+    font-size: 0.85rem;
+    color: #343a46; /* ink-900 */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.fc-hire-path .fc-list-empty {
+    font-size: 0.875rem;
+    color: #8695aa; /* ink-400 */
+}
+

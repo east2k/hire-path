@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, House, Briefcase } from "lucide-react";
+import { Menu, X, House, Briefcase, CalendarDays } from "lucide-react";
 import Image from "next/image";
 import { UserButton, useUser } from "@clerk/nextjs";
 import NavLink from "./NavLink";
@@ -68,6 +68,11 @@ const MobileNav = () => {
                         <div onClick={() => setIsOpen(false)}>
                             <NavLink href="/applications" icon={<Briefcase className="w-5 h-5" />}>
                                 Applications
+                            </NavLink>
+                        </div>
+                        <div onClick={() => setIsOpen(false)}>
+                            <NavLink href="/calendar" icon={<CalendarDays className="w-5 h-5" />}>
+                                Calendar
                             </NavLink>
                         </div>
                     </nav>

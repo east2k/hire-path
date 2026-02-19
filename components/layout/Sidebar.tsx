@@ -1,4 +1,4 @@
-import { Briefcase, House } from "lucide-react";
+import { Briefcase, House, CalendarDays } from "lucide-react";
 import NavLink from "./NavLink";
 import Image from "next/image";
 import { UserButton } from "@clerk/nextjs";
@@ -22,6 +22,9 @@ const Sidebar = async () => {
                     </NavLink>
                     <NavLink href="/applications" icon={<Briefcase className="w-5 h-5" />}>
                         Applications
+                    </NavLink>
+                    <NavLink href="/calendar" icon={<CalendarDays className="w-5 h-5" />}>
+                        Calendar
                     </NavLink>
                 </nav>
 
