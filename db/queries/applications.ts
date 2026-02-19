@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { applications, interviewStages, followUps } from "@/db/schema";
-import { and, eq, isNull, isNotNull, gte, count, SQL } from "drizzle-orm";
+import { and, eq, isNull, isNotNull, gte, count, desc, SQL } from "drizzle-orm";
 
 export async function getUserApplications(clerkUserId: string, status?: string) {
     const conditions: SQL<unknown>[] = [
@@ -137,6 +137,15 @@ export async function getPendingFollowUps(clerkUserId: string) {
         )
         .orderBy(followUps.dueDate)
         .limit(5);
+}
+
+export async function getLatestApplications(clerkUserId: string) {
+    return db
+        .select()
+        .from(applications)
+        .where(and(eq(applications.clerkUserId, clerkUserId), isNull(applications.deletedAt)))
+        .orderBy(desc(applications.createdAt))
+        .limit(3);
 }
 
 export async function getCalendarEvents(clerkUserId: string) {

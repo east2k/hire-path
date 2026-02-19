@@ -6,18 +6,22 @@ import {
     getDashboardStats,
     getUpcomingInterviews,
     getPendingFollowUps,
+    getLatestApplications,
 } from "@/db/queries/applications";
+import ApplicationCard from "@/app/(main)/applications/_components/ApplicationCard";
+import { Application } from "@/types/applications-type";
 
 type DashboardContentsProps = {
     stats: Awaited<ReturnType<typeof getDashboardStats>>;
     upcomingInterviews: Awaited<ReturnType<typeof getUpcomingInterviews>>;
     pendingFollowUps: Awaited<ReturnType<typeof getPendingFollowUps>>;
+    latestApplications: Awaited<ReturnType<typeof getLatestApplications>>;
 };
 
-const DashboardContents = ({ upcomingInterviews, pendingFollowUps }: DashboardContentsProps) => {
+const DashboardContents = ({ upcomingInterviews, pendingFollowUps, latestApplications }: DashboardContentsProps) => {
     return (
         <>
-            <div className="grid gap-6 lg:grid-cols-2">
+            <div className="mb-8 grid gap-6 lg:grid-cols-2">
                 <Card>
                     <div className="flex items-center gap-2 mb-4 text-lg font-semibold text-ink-900">
                         Upcoming Interviews
@@ -115,6 +119,24 @@ const DashboardContents = ({ upcomingInterviews, pendingFollowUps }: DashboardCo
                     )}
                 </Card>
             </div>
+
+            <Card>
+                <div className="flex items-center justify-between mb-4">
+                    <div className="text-lg font-semibold text-ink-900">Latest Applications</div>
+                    <Link href="/applications" className="text-sm text-ink-500 hover:text-ink-900 transition-colors">
+                        View all
+                    </Link>
+                </div>
+                {latestApplications.length === 0 ? (
+                    <p className="text-sm text-ink-500">No applications yet</p>
+                ) : (
+                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {latestApplications.map((application) => (
+                            <ApplicationCard key={application.id} application={application as Application} />
+                        ))}
+                    </div>
+                )}
+            </Card>
         </>
     );
 };
