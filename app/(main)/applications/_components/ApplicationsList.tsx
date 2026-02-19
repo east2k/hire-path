@@ -1,12 +1,24 @@
-import ApplicationCard from "./ApplicationCard"
+import { Application } from "@/types/applications-type";
+import ApplicationCard from "./ApplicationCard";
 
-const ApplicationsList =  () => {
+type ApplicationsListProps = {
+    applications: Application[];
+};
 
-  return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <ApplicationCard />
-    </div>
-  )
-}
+const ApplicationsList = ({ applications }: ApplicationsListProps) => {
+    if (applications.length === 0) {
+        return (
+            <p className="text-sm text-ink-500">No applications found. Add one to get started.</p>
+        );
+    }
 
-export default ApplicationsList
+    return (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {applications.map((application) => (
+                <ApplicationCard key={application.id} application={application} />
+            ))}
+        </div>
+    );
+};
+
+export default ApplicationsList;
