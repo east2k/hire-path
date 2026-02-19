@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Special_Gothic } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const specialGothic = Special_Gothic({
     variable: "--font-special-gothic",
@@ -19,7 +20,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={`${specialGothic.variable}  antialiased  bg-ink-50`}>{children}</body>
+            <ClerkProvider>
+                <body className={`${specialGothic.variable}  antialiased  bg-ink-50`}>
+                    {children}
+                </body>
+            </ClerkProvider>
         </html>
     );
 }
