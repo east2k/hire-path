@@ -3,8 +3,8 @@ import StandardButton from "@/components/StandardButton";
 import Link from "next/link";
 import StandardInput from "../[id]/components/StandardInput";
 import StandardSelect from "../[id]/components/StandardSelect";
-import { APPLICATION_STATUSES } from "@/utils/status-color-identifier";
 import { createApplication } from "@/app/actions/applications";
+import { APPLICATION_STATUS } from "@/constants/application-settings";
 
 const page = () => {
     return (
@@ -44,8 +44,8 @@ const page = () => {
                         id="status"
                         name="status"
                         label="Status"
-                        defaultValue="wishlist"
-                        selectOptions={APPLICATION_STATUSES.map((s) => ({
+                        defaultValue="applied"
+                        selectOptions={APPLICATION_STATUS.map((s) => ({
                             value: s.value,
                             label: s.label,
                         }))}

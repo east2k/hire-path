@@ -1,10 +1,10 @@
 "use client";
 
 import { updateApplicationStatus, deleteApplication } from "@/app/actions/applications";
-import { APPLICATION_STATUSES } from "@/utils/status-color-identifier";
 import StandardButton from "@/components/StandardButton";
 import StandardSelect from "./StandardSelect";
 import Link from "next/link";
+import { APPLICATION_STATUS } from "@/constants/application-settings";
 
 type ApplicationControlsProps = {
     applicationId: string;
@@ -17,7 +17,7 @@ const ApplicationControls = ({ applicationId, currentStatus }: ApplicationContro
             <StandardSelect
                 defaultValue={currentStatus}
                 onChange={(e) => updateApplicationStatus(applicationId, e.target.value)}
-                selectOptions={APPLICATION_STATUSES.map((s) => ({
+                selectOptions={APPLICATION_STATUS.map((s) => ({
                     value: s.value,
                     label: s.label,
                 }))}

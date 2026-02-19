@@ -1,8 +1,8 @@
-import { ApplicationStatus } from "@/types/applications-type";
+import { ApplicationStatus, FollowUpStatus, InterviewStatus } from "@/types/applications-type";
 import { getStatusColor, getStatusLabel } from "@/utils/status-color-identifier";
 
 type StatusBadgeProps = {
-    status: ApplicationStatus;
+    status: ApplicationStatus | FollowUpStatus | InterviewStatus;
 };
 const StatusBadge = ({ status }: StatusBadgeProps) => {
     return (

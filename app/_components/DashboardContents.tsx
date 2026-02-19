@@ -1,6 +1,6 @@
 import Card from "@/components/Card";
 import StatusBadge from "@/components/StatusBadge";
-import { Application } from "@/types/applications-type";
+import { FollowUpStatus, InterviewStatus } from "@/types/applications-type";
 import Link from "next/link";
 import {
     getDashboardStats,
@@ -15,6 +15,7 @@ type DashboardContentsProps = {
 };
 
 const DashboardContents = ({ upcomingInterviews, pendingFollowUps }: DashboardContentsProps) => {
+    console.log(upcomingInterviews);
     return (
         <>
             <div className="grid gap-6 lg:grid-cols-2">
@@ -26,41 +27,42 @@ const DashboardContents = ({ upcomingInterviews, pendingFollowUps }: DashboardCo
                         <p className="text-sm text-ink-500">No upcoming interviews</p>
                     ) : (
                         <div className="space-y-3">
-                            {upcomingInterviews.map((interview) => (
-                                <Link
-                                    key={interview.id}
-                                    href={`/applications/${interview.applicationId}`}
-                                    className="block rounded-lg border border-ink-100 p-3 transition-colors hover:bg-ink-50"
-                                >
-                                    <div className="flex items-start justify-between gap-2">
-                                        <div>
-                                            <p className="font-medium text-ink-900">
-                                                {interview.title}
-                                            </p>
-                                            <p className="text-sm text-ink-500">
-                                                {interview.company} — {interview.position}
-                                            </p>
-                                            {interview.scheduledAt && (
-                                                <p className="mt-1 text-sm text-ink-500">
-                                                    {new Date(interview.scheduledAt).toLocaleString(
-                                                        "en-US",
-                                                        {
+                            {upcomingInterviews.map((interview) => {
+                                return (
+                                    <Link
+                                        key={interview.id}
+                                        href={`/applications/${interview.applicationId}`}
+                                        className="block rounded-lg border border-ink-100 p-3 transition-colors hover:bg-ink-50"
+                                    >
+                                        <div className="flex items-start justify-between gap-2">
+                                            <div>
+                                                <p className="font-medium text-ink-900">
+                                                    {interview.title}
+                                                </p>
+                                                <p className="text-sm text-ink-500">
+                                                    {interview.company} — {interview.position}
+                                                </p>
+                                                {interview.scheduledAt && (
+                                                    <p className="mt-1 text-sm text-ink-500">
+                                                        {new Date(
+                                                            interview.scheduledAt,
+                                                        ).toLocaleString("en-US", {
                                                             month: "long",
                                                             day: "numeric",
                                                             year: "numeric",
                                                             hour: "numeric",
                                                             minute: "2-digit",
-                                                        },
-                                                    )}
-                                                </p>
-                                            )}
+                                                        })}
+                                                    </p>
+                                                )}
+                                            </div>
+                                            <StatusBadge
+                                                status={interview.status as InterviewStatus}
+                                            />
                                         </div>
-                                        <StatusBadge
-                                            status={interview.status as Application["status"]}
-                                        />
-                                    </div>
-                                </Link>
-                            ))}
+                                    </Link>
+                                );
+                            })}
                         </div>
                     )}
                 </Card>
@@ -103,6 +105,9 @@ const DashboardContents = ({ upcomingInterviews, pendingFollowUps }: DashboardCo
                                                     )}
                                                 </p>
                                             </div>
+                                            <StatusBadge
+                                                status={followUp.status as FollowUpStatus}
+                                            />
                                         </div>
                                     </Link>
                                 );

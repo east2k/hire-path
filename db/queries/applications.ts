@@ -97,7 +97,7 @@ export async function getUpcomingInterviews(clerkUserId: string) {
             applicationId: interviewStages.applicationId,
             company: applications.company,
             position: applications.position,
-            status: applications.status,
+            status: interviewStages.status,
         })
         .from(interviewStages)
         .innerJoin(applications, eq(interviewStages.applicationId, applications.id))
@@ -120,6 +120,7 @@ export async function getPendingFollowUps(clerkUserId: string) {
             id: followUps.id,
             title: followUps.title,
             dueDate: followUps.dueDate,
+            status: followUps.status,
             applicationId: followUps.applicationId,
             company: applications.company,
             position: applications.position,

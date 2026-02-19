@@ -17,7 +17,7 @@ export async function createApplication(formData: FormData) {
             clerkUserId: userId,
             company: formData.get("company") as string,
             position: formData.get("position") as string,
-            status: (formData.get("status") as string) || "wishlist",
+            status: (formData.get("status") as string) || "applied",
             location: (formData.get("location") as string) || null,
             salary: (formData.get("salary") as string) || null,
             jobPostingUrl: (formData.get("jobPostingUrl") as string) || null,
