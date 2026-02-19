@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 const specialGothic = Special_Gothic({
     variable: "--font-special-gothic",
     subsets: ["latin"],
+    adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
