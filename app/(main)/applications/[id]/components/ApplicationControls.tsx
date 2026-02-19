@@ -13,7 +13,7 @@ type ApplicationControlsProps = {
 
 const ApplicationControls = ({ applicationId, currentStatus }: ApplicationControlsProps) => {
     return (
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2">
             <StandardSelect
                 defaultValue={currentStatus}
                 onChange={(e) => updateApplicationStatus(applicationId, e.target.value)}

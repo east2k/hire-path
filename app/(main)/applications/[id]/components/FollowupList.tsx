@@ -3,11 +3,7 @@
 import { useState, useTransition } from "react";
 import { FOLLOW_UP_STATUSES } from "@/constants/application-settings";
 import { FollowUp } from "@/types/applications-type";
-import {
-    createFollowUp,
-    updateFollowUpStatus,
-    deleteFollowUp,
-} from "@/app/actions/followUps";
+import { createFollowUp, updateFollowUpStatus, deleteFollowUp } from "@/app/actions/followUps";
 import StandardButton from "@/components/StandardButton";
 import StandardInput from "./StandardInput";
 import StandardSelect from "./StandardSelect";
@@ -112,26 +108,30 @@ const FollowUpsList = ({ followUps, applicationId }: FollowUpListProps) => {
                                 key={followUp.id}
                                 className="rounded-lg border border-ink-100 bg-white p-4"
                             >
-                                <div className="flex items-start justify-between gap-4">
-                                    <div className="flex-1">
-                                        <h4 className="font-medium text-ink-900">{followUp.title}</h4>
+                                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                                    <div className="sm:min-w-0 sm:flex-1">
+                                        <h4 className="font-medium text-ink-900">
+                                            {followUp.title}
+                                        </h4>
                                         <p
                                             className={`mt-1 text-sm ${isOverdue && followUp.status === "pending" ? "text-red-500" : "text-ink-500"}`}
                                         >
                                             Due: {formatDate(followUp.dueDate)}
                                         </p>
                                         {followUp.notes && (
-                                            <p className="mt-2 text-sm text-ink-500">{followUp.notes}</p>
+                                            <p className="mt-2 text-sm text-ink-500">
+                                                {followUp.notes}
+                                            </p>
                                         )}
                                     </div>
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex shrink-0 items-center gap-2">
                                         <StandardSelect
                                             defaultValue={followUp.status}
                                             onChange={(e) =>
                                                 updateFollowUpStatus(
                                                     followUp.id,
                                                     e.target.value,
-                                                    applicationId
+                                                    applicationId,
                                                 )
                                             }
                                             selectOptions={FOLLOW_UP_STATUSES.map((s) => ({
@@ -140,7 +140,11 @@ const FollowUpsList = ({ followUps, applicationId }: FollowUpListProps) => {
                                             }))}
                                         />
                                         <form
-                                            action={deleteFollowUp.bind(null, followUp.id, applicationId)}
+                                            action={deleteFollowUp.bind(
+                                                null,
+                                                followUp.id,
+                                                applicationId,
+                                            )}
                                         >
                                             <button
                                                 type="submit"

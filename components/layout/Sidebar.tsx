@@ -9,7 +9,7 @@ const Sidebar = async () => {
     const user = await currentUser();
 
     return (
-        <aside className="fixed left-0 top-0 z-40 h-screen w-64 border-r border-ink-100 bg-white">
+        <aside className="hidden lg:block fixed left-0 top-0 z-40 h-screen w-64 border-r border-ink-100 bg-white">
             <div className="flex h-full flex-col">
                 <div className="flex flex-row h-16 items-center  gap-2 border-b border-ink-100 text-blue-ribbon-400 px-6 ">
                     <Image src="/images/logo.png" width={32} height={32} alt="HirePath Logo" />

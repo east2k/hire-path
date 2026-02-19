@@ -3,11 +3,7 @@
 import { useState, useTransition } from "react";
 import { INTERVIEW_STATUSES, INTERVIEW_TYPES } from "@/constants/application-settings";
 import { InterviewStage } from "@/types/applications-type";
-import {
-    createInterview,
-    updateInterviewStatus,
-    deleteInterview,
-} from "@/app/actions/interviews";
+import { createInterview, updateInterviewStatus, deleteInterview } from "@/app/actions/interviews";
 import StandardInput from "./StandardInput";
 import StandardSelect from "./StandardSelect";
 import StandardButton from "@/components/StandardButton";
@@ -18,8 +14,7 @@ type InterviewListProps = {
     applicationId: string;
 };
 
-const getTypeLabel = (type: string) =>
-    INTERVIEW_TYPES.find((t) => t.value === type)?.label ?? type;
+const getTypeLabel = (type: string) => INTERVIEW_TYPES.find((t) => t.value === type)?.label ?? type;
 
 const formatDate = (date: Date) =>
     new Date(date).toLocaleString("en-US", {
@@ -139,10 +134,12 @@ const InterviewList = ({ interviews, applicationId }: InterviewListProps) => {
                             key={interview.id}
                             className="rounded-lg border border-ink-100 bg-white p-4"
                         >
-                            <div className="flex items-start justify-between gap-4">
-                                <div>
-                                    <div className="flex items-center gap-2">
-                                        <h4 className="font-medium text-ink-900">{interview.title}</h4>
+                            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                                <div className="sm:min-w-0 sm:flex-1">
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <h4 className="font-medium text-ink-900">
+                                            {interview.title}
+                                        </h4>
                                         <span className="rounded-full bg-ink-100 px-2 py-0.5 text-xs text-ink-600">
                                             {getTypeLabel(interview.type)}
                                         </span>
@@ -154,7 +151,9 @@ const InterviewList = ({ interviews, applicationId }: InterviewListProps) => {
                                         </p>
                                     )}
                                     {interview.location && (
-                                        <p className="mt-1 text-sm text-ink-500">{interview.location}</p>
+                                        <p className="mt-1 text-sm text-ink-500">
+                                            {interview.location}
+                                        </p>
                                     )}
                                     {interview.interviewers && (
                                         <p className="mt-1 text-sm text-ink-500">
@@ -162,17 +161,19 @@ const InterviewList = ({ interviews, applicationId }: InterviewListProps) => {
                                         </p>
                                     )}
                                     {interview.feedback && (
-                                        <p className="mt-2 text-sm text-ink-700">{interview.feedback}</p>
+                                        <p className="mt-2 text-sm text-ink-700">
+                                            {interview.feedback}
+                                        </p>
                                     )}
                                 </div>
-                                <div className="flex items-center gap-2">
+                                <div className="flex shrink-0 items-center gap-2">
                                     <StandardSelect
                                         defaultValue={interview.status}
                                         onChange={(e) =>
                                             updateInterviewStatus(
                                                 interview.id,
                                                 e.target.value,
-                                                applicationId
+                                                applicationId,
                                             )
                                         }
                                         selectOptions={INTERVIEW_STATUSES.map((s) => ({
@@ -181,7 +182,11 @@ const InterviewList = ({ interviews, applicationId }: InterviewListProps) => {
                                         }))}
                                     />
                                     <form
-                                        action={deleteInterview.bind(null, interview.id, applicationId)}
+                                        action={deleteInterview.bind(
+                                            null,
+                                            interview.id,
+                                            applicationId,
+                                        )}
                                     >
                                         <button
                                             type="submit"
