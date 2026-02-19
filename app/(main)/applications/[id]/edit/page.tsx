@@ -59,7 +59,23 @@ const page = async ({ params }: PageProps) => {
                             label="Position"
                             type="text"
                             required
+                            placeholder="e.g., Frontend Web Developer"
                             defaultValue={app.position}
+                            suggestions={[
+                                "Frontend Web Developer",
+                                "Backend Web Developer",
+                                "Full Stack Web Developer",
+                                "React Developer",
+                                "Nextjs Developer",
+                                "Software Engineer",
+                                "Senior Software Engineer",
+                                "Staff Engineer",
+                                "Product Manager",
+                                "Data Scientist",
+                                "DevOps Engineer",
+                                "QA Engineer",
+                                "UX Designer",
+                            ]}
                         />
                     </div>
 
@@ -81,6 +97,7 @@ const page = async ({ params }: PageProps) => {
                             label="Location"
                             type="text"
                             defaultValue={app.location ?? ""}
+                            suggestions={["Remote", "Hybrid", "On-site"]}
                         />
                         <StandardInput
                             id="salary"
@@ -88,6 +105,19 @@ const page = async ({ params }: PageProps) => {
                             label="Salary Range"
                             type="text"
                             defaultValue={app.salary ?? ""}
+                            placeholder="e.g., $80k - $100k, ₱80k - ₱100k"
+                            suggestions={[
+                                "Not sure",
+                                "₱10k - ₱20k",
+                                "₱20k - ₱40k",
+                                "₱40k - ₱60k",
+                                "₱60k - ₱80k",
+                                "₱80k - ₱100k",
+                                "₱100k - ₱120k",
+                                "₱120k - ₱150k",
+                                "₱150k - ₱180k",
+                                "₱180k+",
+                            ]}
                         />
                     </div>
 
@@ -116,7 +146,12 @@ const page = async ({ params }: PageProps) => {
                     />
 
                     <div className="flex gap-3 pt-4">
-                        <StandardButton title="Save Changes" variant="primary" size="md" type="submit" />
+                        <StandardButton
+                            title="Save Changes"
+                            variant="primary"
+                            size="md"
+                            type="submit"
+                        />
                         <Link href={`/applications/${id}`}>
                             <StandardButton title="Cancel" variant="secondary" size="md" />
                         </Link>

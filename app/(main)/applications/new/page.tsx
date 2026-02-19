@@ -35,8 +35,23 @@ const page = () => {
                             name="position"
                             label="Position"
                             type="text"
-                            placeholder="e.g., Software Engineer"
+                            placeholder="e.g., Frontend Web Developer"
                             required
+                            suggestions={[
+                                "Frontend Web Developer",
+                                "Backend Web Developer",
+                                "Full Stack Web Developer",
+                                "React Developer",
+                                "Nextjs Developer",
+                                "Software Engineer",
+                                "Senior Software Engineer",
+                                "Staff Engineer",
+                                "Product Manager",
+                                "Data Scientist",
+                                "DevOps Engineer",
+                                "QA Engineer",
+                                "UX Designer",
+                            ]}
                         />
                     </div>
 
@@ -58,13 +73,26 @@ const page = () => {
                             label="Location"
                             type="text"
                             placeholder="e.g., Remote, New York"
+                            suggestions={["Remote", "Hybrid", "On-site"]}
                         />
                         <StandardInput
                             id="salary"
                             name="salary"
                             label="Salary Range"
                             type="text"
-                            placeholder="e.g., $80k–$100k"
+                            placeholder="e.g., $80k - $100k, ₱80k - ₱100k"
+                            suggestions={[
+                                "Not sure",
+                                "₱10k - ₱20k",
+                                "₱20k - ₱40k",
+                                "₱40k - ₱60k",
+                                "₱60k - ₱80k",
+                                "₱80k - ₱100k",
+                                "₱100k - ₱120k",
+                                "₱120k - ₱150k",
+                                "₱150k - ₱180k",
+                                "₱180k+",
+                            ]}
                         />
                     </div>
 
