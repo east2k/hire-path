@@ -7,8 +7,8 @@ import {
     getPendingFollowUps,
     getLatestApplications,
 } from "@/db/queries/applications";
-import DashboardStats from "../_components/DashboardStats";
-import DashboardContents from "../_components/DashboardContents";
+import DashboardStats from "./_components/DashboardStats";
+import DashboardContents from "./_components/DashboardContents";
 
 const MainPage = async () => {
     const { userId } = await auth();

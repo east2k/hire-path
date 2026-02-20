@@ -61,7 +61,7 @@ const MobileNav = () => {
 
                     <nav className="flex-1 space-y-1 p-4">
                         <div onClick={() => setIsOpen(false)}>
-                            <NavLink href="/" icon={<House className="w-5 h-5" />}>
+                            <NavLink href="/dashboard" icon={<House className="w-5 h-5" />}>
                                 Dashboard
                             </NavLink>
                         </div>

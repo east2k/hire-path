@@ -17,7 +17,7 @@ const Sidebar = async () => {
                 </div>
 
                 <nav className="flex-1 space-y-1 p-4">
-                    <NavLink href="/" icon={<House className="w-5 h-5" />}>
+                    <NavLink href="/dashboard" icon={<House className="w-5 h-5" />}>
                         Dashboard
                     </NavLink>
                     <NavLink href="/applications" icon={<Briefcase className="w-5 h-5" />}>
