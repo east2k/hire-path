@@ -35,7 +35,7 @@ const MobileNav = () => {
             )}
 
             <div
-                className={`fixed left-0 top-0 z-50 h-screen w-64 transform border-r border-ink-100 bg-white transition-transform duration-200 lg:hidden ${
+                className={`fixed left-0 top-0 z-50 h-dvh w-64 transform border-r border-ink-100 bg-white transition-transform duration-200 lg:hidden ${
                     isOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
             >

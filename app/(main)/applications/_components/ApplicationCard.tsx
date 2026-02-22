@@ -10,7 +10,7 @@ type ApplicationCardProps = {
 
 const ApplicationCard = ({ application }: ApplicationCardProps) => {
     return (
-        <Link href={`/applications/${application.id}`}>
+        <Link href={`/applications/${application.id}`} className="block w-full">
             <Card>
                 <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0 flex-1">
